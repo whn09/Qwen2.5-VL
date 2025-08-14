@@ -157,6 +157,7 @@ def train(attn_implementation="flash_attention_2"):
         data_module = make_supervised_data_module_packed(tokenizer=tokenizer, data_args=data_args)
     else:
         data_module = make_supervised_data_module(tokenizer=tokenizer, data_args=data_args)
+    training_args.include_num_input_tokens_seen = True  # 输出MFU
     trainer = Trainer(
         model=model, processing_class=tokenizer, args=training_args, **data_module
     )

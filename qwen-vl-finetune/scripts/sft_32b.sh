@@ -22,7 +22,7 @@ grad_accum_steps=8
 entry_file=qwenvl/train/train_qwen.py
 
 # Dataset configuration (replace with public dataset names)
-datasets=cambrian_737k,allava_4v,llava_next
+datasets=llava_next
 
 # Output configuration
 run_name="qwen2vl-baseline"
