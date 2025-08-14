@@ -26,9 +26,24 @@ VIDEOCHATGPT = {
     "data_path": "PATH_TO_VIDEOCHATGPT_DATA",
 }
 
+CAMBRIAN10M = {
+    "annotation_path": "/opt/dlami/nvme/Cambrian-10M/jsons/Cambrian10M.jsonl.json",
+    "data_path": "/opt/dlami/nvme/Cambrian-10M/",
+}
+
 LLAVANEXT = {
-    "annotation_path": "/home/ubuntu/Qwen2.5-VL/qwen-vl-finetune/LLaVA-NeXT-Data/llava_next_raw_format/llava_next_raw_format_processed.json",
-    "data_path": "/home/ubuntu/Qwen2.5-VL/qwen-vl-finetune/LLaVA-NeXT-Data/llava_next_raw_format/",
+    "annotation_path": "/opt/dlami/nvme/LLaVA-NeXT-Data/llava_next_raw_format/llava_next_raw_format_processed.json",
+    "data_path": "/opt/dlami/nvme/LLaVA-NeXT-Data/llava_next_raw_format/",
+}
+
+ALLaVA4V = {
+    "annotation_path": "/opt/dlami/nvme/ALLaVA-4V/allava_laion/ALLaVA-Instruct-LAION-4V.json",
+    "data_path": "/opt/dlami/nvme/ALLaVA-4V/",
+}
+
+VISUALWEBINSTRUCT = {
+    "annotation_path": "/opt/dlami/nvme/VisualWebInstruct/visualwebinstruct_qa.jsonl",
+    "data_path": "/opt/dlami/nvme/VisualWebInstruct/",
 }
 
 data_dict = {
@@ -37,7 +52,10 @@ data_dict = {
     "mp_doc": MP_DOC,
     "clevr_mc": CLEVR_MC,
     "videochatgpt": VIDEOCHATGPT,
+    "cambrian_10m": CAMBRIAN10M,
     "llava_next": LLAVANEXT,
+    "allava_4v": ALLaVA4V,
+    "visualwebinstruct": VISUALWEBINSTRUCT,
 }
 
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Distributed training configuration
-NPROC_PER_NODE=8
+NPROC_PER_NODE=$(nvidia-smi --list-gpus | wc -l)  # Automatically detects available GPUs
 WORLD_SIZE=1
 MASTER_ADDR=${MASTER_ADDR:-"127.0.0.1"}
 MASTER_PORT=${MASTER_PORT:-$(shuf -i 20001-29999 -n 1)}
