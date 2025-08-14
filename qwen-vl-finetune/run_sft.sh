@@ -43,6 +43,18 @@ for file in *.tar.gz; do
     rm -rf "$file"
 done
 
+cd /opt/dlami/nvme
+s5cmd cp Cambrian-10M s3://datalab/datasets/
+s5cmd cp ALLaVA-4V s3://datalab/datasets/
+s5cmd cp VisualWebInstruct s3://datalab/datasets/
+s5cmd cp LLaVA-NeXT-Data s3://datalab/datasets/
+
+cd /opt/dlami/nvme
+s5cmd cp s3://datalab/datasets/Cambrian-10M Cambrian-10M
+s5cmd cp s3://datalab/datasets/ALLaVA-4V ALLaVA-4V
+s5cmd cp s3://datalab/datasets/VisualWebInstruct VisualWebInstruct
+s5cmd cp s3://datalab/datasets/LLaVA-NeXT-Data LLaVA-NeXT-Data
+
 cd /home/ubuntu/Qwen2.5-VL/qwen-vl-finetune
 sh ./scripts/sft.sh
 sh ./scripts/sft_7b.sh

@@ -27,7 +27,7 @@ VIDEOCHATGPT = {
 }
 
 CAMBRIAN10M = {
-    "annotation_path": "/opt/dlami/nvme/Cambrian-10M/jsons/Cambrian10M.jsonl.json",
+    "annotation_path": "/opt/dlami/nvme/Cambrian-10M/jsons/Cambrian10M.jsonl",
     "data_path": "/opt/dlami/nvme/Cambrian-10M/",
 }
 
