@@ -2,8 +2,8 @@ import re
 
 # Define placeholders for dataset paths
 CAMBRIAN_737K = {
-    "annotation_path": "PATH_TO_CAMBRIAN_737K_ANNOTATION",
-    "data_path": "",
+    "annotation_path": "/opt/dlami/nvme/Cambrian-10M/jsons/Cambrian737k.jsonl",
+    "data_path": "/opt/dlami/nvme/Cambrian-10M/",
 }
 
 CAMBRIAN_737K_PACK = {

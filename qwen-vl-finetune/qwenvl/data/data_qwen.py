@@ -369,7 +369,7 @@ class LazySupervisedDataset(Dataset):
         video_grid_thw = None
         second_per_grid_ts = None
 
-        if "image" in sources[0]:
+        if "image" in sources[0] and self.list_data_dict[i]["image"] is not None:
             image_folder = self.list_data_dict[i]["data_path"]
             image_file = self.list_data_dict[i]["image"]
             if isinstance(image_file, List):
@@ -396,7 +396,7 @@ class LazySupervisedDataset(Dataset):
                 merged_thw.prod() // self.data_args.image_processor.merge_size**2
                 for merged_thw in grid_thw_merged
             ]
-        if "video" in sources[0]:
+        if "video" in sources[0] and self.list_data_dict[i]["video"] is not None:
             video_file = self.list_data_dict[i]["video"]
             video_folder = self.list_data_dict[i]["data_path"]
             if isinstance(video_file, List):
@@ -427,27 +427,29 @@ class LazySupervisedDataset(Dataset):
                 merged_thw.prod() // self.data_args.image_processor.merge_size**2
                 for merged_thw in video_grid_thw_merged
             ]
-        chat_sources = copy.deepcopy([e["conversations"] for e in sources])
-        data_dict = preprocess_qwen_2_visual(
-            chat_sources,
-            self.tokenizer,
-            grid_thw_image=grid_thw_merged if grid_thw_merged else None,
-            grid_thw_video=video_grid_thw_merged if video_grid_thw_merged else None,
-        )
-        position_ids, _ = self.get_rope_index(
-            self.data_args.image_processor.merge_size,
-            data_dict["input_ids"],
-            image_grid_thw=torch.stack(grid_thw, dim=0) if grid_thw else None,
-            video_grid_thw=(
-                torch.stack(video_grid_thw, dim=0) if video_grid_thw else None
-            ),
-            second_per_grid_ts=second_per_grid_ts if second_per_grid_ts else None,
-        )
-        if "image" not in sources[0] and "video" not in sources[0]:
-            grid_thw_merged = None
+        if ("image" in sources[0] and self.list_data_dict[i]["image"] is not None) or ("video" in sources[0] and self.list_data_dict[i]["video"] is not None):
+            chat_sources = copy.deepcopy([e["conversations"] for e in sources])
+            data_dict = preprocess_qwen_2_visual(
+                chat_sources,
+                self.tokenizer,
+                grid_thw_image=grid_thw_merged if grid_thw_merged else None,
+                grid_thw_video=video_grid_thw_merged if video_grid_thw_merged else None,
+            )
+            position_ids, _ = self.get_rope_index(
+                self.data_args.image_processor.merge_size,
+                data_dict["input_ids"],
+                image_grid_thw=torch.stack(grid_thw, dim=0) if grid_thw else None,
+                video_grid_thw=(
+                    torch.stack(video_grid_thw, dim=0) if video_grid_thw else None
+                ),
+                second_per_grid_ts=second_per_grid_ts if second_per_grid_ts else None,
+            )
+        # if "image" not in sources[0] and "video" not in sources[0]:
+        else:
+            # grid_thw_merged = None
             sources = copy.deepcopy([e["conversations"] for e in sources])
             data_dict = preprocess_qwen_2_visual(
-                sources, self.tokenizer, grid_thw=grid_thw_merged
+                sources, self.tokenizer  # , grid_thw=grid_thw_merged
             )
             position_ids = (
                 torch.arange(0, data_dict["input_ids"].size(1))
@@ -459,13 +461,13 @@ class LazySupervisedDataset(Dataset):
         data_dict["position_ids"] = position_ids
         data_dict["attention_mask"] = [data_dict["input_ids"][0].size(0)]
 
-        if "image" in self.list_data_dict[i]:
+        if "image" in self.list_data_dict[i] and self.list_data_dict[i]["image"] is not None:
             data_dict["pixel_values"] = torch.cat(image, dim=0)
             data_dict["image_grid_thw"] = torch.cat(
                 [thw.unsqueeze(0) for thw in grid_thw], dim=0
             )
         # video exist in the data
-        elif "video" in self.list_data_dict[i]:
+        elif "video" in self.list_data_dict[i] and self.list_data_dict[i]["video"] is not None:
             data_dict["pixel_values_videos"] = torch.cat(video, dim=0)
             data_dict["video_grid_thw"] = torch.cat(
                 [thw.unsqueeze(0) for thw in video_grid_thw], dim=0
