@@ -1,4 +1,3 @@
-# sudo apt install -y ffmpeg
 torch
 torchvision
 transformers==4.50.1
