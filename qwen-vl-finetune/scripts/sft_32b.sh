@@ -15,8 +15,8 @@ llm=Qwen/Qwen2.5-VL-32B-Instruct  # Using HuggingFace model ID
 
 # Training hyperparameters
 lr=2e-7
-batch_size=2
-grad_accum_steps=8
+batch_size=4
+grad_accum_steps=4
 
 # Training entry point
 entry_file=qwenvl/train/train_qwen.py

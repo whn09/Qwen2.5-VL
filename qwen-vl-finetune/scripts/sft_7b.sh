@@ -15,7 +15,7 @@ llm=Qwen/Qwen2.5-VL-7B-Instruct  # Using HuggingFace model ID
 
 # Training hyperparameters
 lr=2e-7
-batch_size=4
+batch_size=16
 grad_accum_steps=4
 
 # Training entry point
