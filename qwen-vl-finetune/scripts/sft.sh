@@ -36,7 +36,7 @@ args="
     --model_name_or_path "${llm}" \
     --dataset_use ${datasets} \
     --data_flatten True \
-    --tune_mm_vision False \
+    --tune_mm_vision True \
     --tune_mm_mlp True \
     --tune_mm_llm True \
     --bf16 \
