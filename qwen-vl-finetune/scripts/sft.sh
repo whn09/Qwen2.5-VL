@@ -15,8 +15,8 @@ llm=Qwen/Qwen2.5-VL-3B-Instruct  # Using HuggingFace model ID
 
 # Training hyperparameters
 lr=2e-7
-batch_size=32
-grad_accum_steps=4
+batch_size=128
+grad_accum_steps=1  # default: 4
 
 # Training entry point
 entry_file=qwenvl/train/train_qwen.py
@@ -26,7 +26,9 @@ datasets=llava_next
 
 # Output configuration
 run_name="qwen2vl-baseline"
-output_dir=./output
+output_dir=/opt/dlami/nvme/output
+
+rm -rf $output_dir
 
 # Training arguments
 args="
@@ -39,7 +41,7 @@ args="
     --tune_mm_llm True \
     --bf16 \
     --output_dir ${output_dir} \
-    --num_train_epochs 0.5 \
+    --num_train_epochs 1.0 \
     --per_device_train_batch_size ${batch_size} \
     --per_device_eval_batch_size $((batch_size*2)) \
     --gradient_accumulation_steps ${grad_accum_steps} \
