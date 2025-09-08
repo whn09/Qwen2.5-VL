@@ -1,11 +1,11 @@
 torch
 torchvision
-transformers==4.50.1
+transformers>=4.50.1
 deepspeed
 flash_attn
 triton
 accelerate
-torchcodec==0.5
+torchcodec>=0.5
 datasets
 decord
 wandb
