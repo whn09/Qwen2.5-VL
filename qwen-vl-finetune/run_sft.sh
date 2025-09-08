@@ -46,6 +46,11 @@ for file in *.tar.gz; do
 done
 
 cd /opt/dlami/nvme
+hf download --repo-type dataset whn09/sharegpt4v --local-dir sharegpt4v
+cd sharegpt4v
+unzip sharegpt4v.zip
+
+cd /opt/dlami/nvme
 s5cmd cp Cambrian-10M s3://datalab/datasets/
 s5cmd cp ALLaVA-4V s3://datalab/datasets/
 s5cmd cp VisualWebInstruct s3://datalab/datasets/
