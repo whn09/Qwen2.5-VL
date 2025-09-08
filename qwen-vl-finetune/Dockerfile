@@ -15,4 +15,6 @@ RUN mkdir -p /opt/dlami/nvme
 
 RUN cd /opt/dlami/nvme && hf download --repo-type dataset whn09/sharegpt4v --local-dir sharegpt4v && cd sharegpt4v && unzip sharegpt4v.zip
 
-# RUN cd Qwen2.5-VL/qwen-vl-finetune && sh ./scripts/sft.sh
+WORKDIR /Qwen2.5-VL/qwen-vl-finetune
+
+# RUN cd /Qwen2.5-VL/qwen-vl-finetune && sh ./scripts/sft.sh

@@ -71,4 +71,4 @@ sh ./scripts/sft_32b.sh
 # For Docker
 ./build_and_push.sh qwen-vl-finetune
 docker run --gpus all -it qwen-vl-finetune
-docker system prune --volumes -y
+docker system prune --volumes
