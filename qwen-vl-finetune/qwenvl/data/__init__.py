@@ -36,6 +36,11 @@ LLAVANEXT = {
     "data_path": "/opt/dlami/nvme/LLaVA-NeXT-Data/llava_next_raw_format/",
 }
 
+SHAREGPT4V = {
+    "annotation_path": "/opt/dlami/nvme/sharegpt4v/llava_next_raw_format_processed_sharegpt4v.json",
+    "data_path": "/opt/dlami/nvme/sharegpt4v/",
+}
+
 ALLaVA4V = {
     "annotation_path": "/opt/dlami/nvme/ALLaVA-4V/allava_laion/ALLaVA-Instruct-LAION-4V.json",
     "data_path": "/opt/dlami/nvme/ALLaVA-4V/",
@@ -54,6 +59,7 @@ data_dict = {
     "videochatgpt": VIDEOCHATGPT,
     "cambrian_10m": CAMBRIAN10M,
     "llava_next": LLAVANEXT,
+    "sharegpt4v": SHAREGPT4V,
     "allava_4v": ALLaVA4V,
     "visualwebinstruct": VISUALWEBINSTRUCT,
 }
